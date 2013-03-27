@@ -1,0 +1,25 @@
+<%= form_tag students_path, :method => :get do %>
+  <fieldset>
+    <legend><%= t('student.search')%></legend>
+    <label><%= t('student.full_name') %></label>
+    <%= text_field_tag 'search[full_name]', params[:search] ? params[:search][:full_name] : '' %>
+    <label><%= t('student.registration') %></label>
+    <%= text_field_tag 'search[registration]', params[:search] ? params[:search][:registration] : '' %>
+    <br />
+    <%= submit_tag t('shared.search'), :class => 'btn' %>
+  </fieldset>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= t('student.registration') %></th>
+      <th><%= t('student.full_name') %></th>
+      <th><%= t('shared.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @students %>
+  </tbody>
+</table>

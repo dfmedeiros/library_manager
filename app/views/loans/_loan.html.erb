@@ -1,0 +1,28 @@
+<tr>
+  <td>
+    <%= loan.id %>
+  </td>
+  <td>
+    <%= loan.full_name %>
+  </td>
+  <td>
+    <%= loan.title %>
+  </td>
+  <td>
+    <%= format_time loan.created_at %>
+  </td>
+  <td>
+    <%= format_time loan.end_at %>
+  </td>
+  <td>
+    <%= format_time loan.returned_at %>
+  </td>
+  <td>
+    <%= loan.returned? ? t('loan.returned') : t('loan.not_returned') %>
+  </td>
+  <td>
+    <% unless loan.returned? %>
+      <%= link_to t('loan.replace'), replace_book_loan_path(loan.book, loan), :class => 'btn btn-danger', :method => :put %>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h2><%= @book.title %></h2>
+  <i><%= @book.author %></i>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= t('student.single') %></th>
+      <th><%= t('book.single') %></th>
+      <th><%= t('loan.created_at') %></th>
+      <th><%= t('loan.end_at') %></th>
+      <th><%= t('loan.returned_at') %></th>
+      <th><%= t('book.situation') %></th>
+      <th><%= t('shared.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @loans %>
+  </tbody>
+</table>

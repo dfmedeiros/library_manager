@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= student.id %>
+  </td>
+  <td>
+    <%= student.registration %>
+  </td>
+  <td>
+    <%= student.full_name %>
+  </td>
+  <td>
+    <%= link_to t('student.see_details'), student_path(student), :class => 'btn' %>
+  </td>
+</tr>

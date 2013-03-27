@@ -1,0 +1,26 @@
+<%= form_tag books_path, :method => :get do %>
+  <fieldset>
+    <legend><%= t('book.search') %></legend>
+    <label><%= t('book.title') %></label>
+    <%= text_field_tag 'search[title]', params[:search].try(:[], :title) %>
+    <label><%= t('book.author') %></label>
+    <%= text_field_tag 'search[author]', params[:search].try(:[], :author) %>
+    <br />
+    <%= submit_tag t('shared.search'), :class => 'btn' %>
+  </fieldset>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= t('book.title') %></th>
+      <th><%= t('book.author') %></th>
+      <th><%= t('book.situation') %></th>
+      <th><%= t('shared.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @books %>
+  </tbody>
+</table>

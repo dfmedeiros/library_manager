@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:title) ? yield(:title) : t('shared.title') %></title>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+    <%= stylesheet_link_tag "application", :media => "all" %>
+  </head>
+  <body>
+
+    <div id="wrap">
+
+      <div id="header" class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <div class="row">
+              <div class="pull-left">
+                <span class="brand"><%= t('shared.title') %></span>
+              </div>
+              <ul class="nav pull-right">
+                <% if employee_signed_in? %>
+                  <li class="divider-vertical"></li>
+                  <li><%= link_to t('book.plural'), books_path %></li>
+                  <li class="divider-vertical"></li>
+                  <li><%= link_to t('student.plural'), students_path %></li>
+                  <li class="divider-vertical"></li>
+                  <li><%= link_to t('shared.log_out'), destroy_employee_session_path, :method => :delete %></li>
+                  <li class="divider-vertical"></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="main-region" class="container">
+        <div class="row">
+            <div class="span12">
+              <%= bootstrap_flash %>
+              <%= yield :errors %>
+              <%= yield %>
+            </div>
+          </div>
+      </div>
+      <div id="push"></div>
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="muted">
+          <%= "#{t('shared.title')} - #{t('shared.developed_by')} " %>
+          <%= link_to 'Diego Felipe de Medeiros', 'http://github.com/dfmedeiros' %>
+        </p>
+      </div> 
+    </div>
+
+    
+    <%= javascript_include_tag "application" %>
+
+  </body>
+</html>

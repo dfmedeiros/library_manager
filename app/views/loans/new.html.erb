@@ -1,0 +1,17 @@
+<%= content_for :errors do %>
+  <%= error_messages @loan %> 
+<% end %>
+
+<%= form_for @loan, :url => book_loans_path(@book) do |f| %>
+  <fieldset>
+    <legend><%= t('loan.create') %> - <%= @book.title %></legend>
+    <label><%= t('student.single') %></label>
+    <%= f.select :student_id, options_from_collection_for_select(Student.all, :id, :full_name, params[:loan].try(:[], :student_id)), :include_blank => t('shared.select') %>
+    <%= f.hidden_field :book_id, :value => @book.id %>
+    <%= f.hidden_field :employee_id, :value => current_employee.id %>
+    <label><%= t('loan.end_at') %></label>
+    <%= f.text_field :end_at %>
+    <br />
+    <%= f.submit t('shared.save'), :class => 'btn' %>
+  </fieldset>
+<% end %>

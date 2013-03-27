@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <%= book.id %>
+  </td>
+  <td>
+    <%= book.title %>
+  </td>
+  <td>
+    <%= book.author %>
+  </td>
+  <td>
+    <%= book.available? ? t('book.available') : t('book.unavailable') %>
+  </td>
+  <td>
+    <% if book.available? %>
+      <%= link_to t('loan.create') , new_book_loan_path(book), :class => 'btn btn-success' %>
+    <% else %>
+      <%= link_to t('loan.replace') , replace_book_loan_path(book, book.loans.last), :class => 'btn btn-danger', :method => :put %>
+    <% end %>
+    <%= link_to t('loan.index') , book_loans_path(book), :class => 'btn' %>
+  </td>
+</tr>
